@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttervaluelabassignment/model/Datamodel.dart';
+import 'package:fluttervaluelab/model/Datamodel.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 

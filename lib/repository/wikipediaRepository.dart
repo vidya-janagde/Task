@@ -1,7 +1,7 @@
 
 
 import 'package:dio/dio.dart';
-import 'package:fluttervaluelabassignment/model/wekipediaModel.dart';
+import 'package:fluttervaluelab/model/wekipediaModel.dart';
 import 'package:http/http.dart'as http;
 
 class WikiRepository {

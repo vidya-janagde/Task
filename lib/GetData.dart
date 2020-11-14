@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluttervaluelabassignment/networking/ApiServiceProvider.dart';
+import 'package:fluttervaluelab/networking/ApiServiceProvider.dart';
 
 import 'model/Datamodel.dart';
 

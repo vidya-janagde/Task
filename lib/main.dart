@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:fluttervaluelabassignment/bloc/wikipediaBloc.dart';
-import 'package:fluttervaluelabassignment/model/wekipediaModel.dart';
+import 'package:fluttervaluelab/bloc/wikipediaBloc.dart';
+import 'package:fluttervaluelab/model/wekipediaModel.dart';
 
 
 import 'GetData.dart';

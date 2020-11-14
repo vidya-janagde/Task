@@ -1,6 +1,7 @@
 
-import 'package:fluttervaluelabassignment/model/wekipediaModel.dart';
-import 'package:fluttervaluelabassignment/repository/wikipediaRepository.dart';
+
+import 'package:fluttervaluelab/model/wekipediaModel.dart';
+import 'package:fluttervaluelab/repository/wikipediaRepository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class WikiBloc
