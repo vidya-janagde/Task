@@ -19,23 +19,23 @@ class Wikipedia {
 
   factory Wikipedia.fromJson(dynamic json) {
 
-//      List<dynamic> list = json['query'];
-//      List<Query> quarylist = list.map((i) => Query.fromJson(i)).toList();
+      List<dynamic> list = json['query'];
+      List<Query> quarylist = list.map((i) => Query.fromJson(i)).toList();
 
 
-    var list = new List();
+    var value = new List();
     json.forEach((key, value){
       value.forEach((value) {
-        list.add(value);
+        value.add(value);
         print("array_key" + key);
       });
     });
 
-    print(list);
+    print(value);
 
-    List<Query> quarylist = new List<Query>();
-    quarylist = list.map((i) => Query.fromJson(i)).toList();
-
+//    List<Query> quarylist = new List<Query>();
+//    quarylist = value.map((i) => Query.fromJson(i)).toList();
+//
 
       return new Wikipedia(
         batchcomplete: json["batchcomplete"],
@@ -82,41 +82,8 @@ class Wikipedia {
 
 
 
-class Warnings {
-  Warnings({
-    this.main,
-  });
 
-  final Main main;
 
-  factory Warnings.fromJson(Map<String, dynamic> json) =>
-      Warnings(
-        main: Main.fromJson(json["main"]),
-      );
-
-  Map<String, dynamic> toJson() =>
-      {
-        "main": main.toJson(),
-      };
-}
-
-class Main {
-  Main({
-    this.warnings,
-  });
-
-  final String warnings;
-
-  factory Main.fromJson(Map<String, dynamic> json) =>
-      Main(
-        warnings: json["warnings"],
-      );
-
-  Map<String, dynamic> toJson() =>
-      {
-        "warnings": warnings,
-      };
-}
 
 class Query {
   Query( {
@@ -133,8 +100,7 @@ class Query {
 
 
     json.forEach((key, value) {
-      // First time: value = [{"id": 173,"user_id": 21}, {"id": 174,"user_id": 21}]
-      // Second time: value = [{"id": 175, "user_id": 21}, {"id": 176, "user_id": 21}]
+
       list.add(value);
       print("array_key  " + key);
     });

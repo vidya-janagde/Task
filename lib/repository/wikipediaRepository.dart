@@ -12,13 +12,8 @@ class WikiRepository {
   var getUrl = 'https://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages%7Cpageterms&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=50&pilimit=10&wbptterms=description&gpssearch=Sachin+T&gpslimit=10';
 
 
-  Future<Query> getList() async {
-    var params = {'action': 'query', 'format': 'json',
-      'prop': 'pageimages%7Cpageterms', 'generator': 'prefixsearch',
-      'redirects': 1, 'formatversion': 2,
-      'piprop': 'thumbnail', 'pithumbsize': 50,
-      'pilimit': 10, 'wbptterms': 'description',
-      'gpssearch': 'Sachin+T', 'gpslimit': 10};
+  Future<Wikipedia> getList() async {
+
 
     try {
       Response response = await _dio.get(getUrl);
@@ -26,7 +21,7 @@ class WikiRepository {
 
 
 
-      return Query.fromJson(response.data);
+      return Wikipedia.fromJson(response.data);
 
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");

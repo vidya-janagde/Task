@@ -8,11 +8,11 @@ class WikiBloc
 {
   WikiRepository _repository= WikiRepository();
 
-  final BehaviorSubject<Query> _subject =
-  BehaviorSubject<Query>();
+  final BehaviorSubject<Wikipedia> _subject =
+  BehaviorSubject<Wikipedia>();
 
   getData() async {
-    Query response = await _repository.getList();
+    Wikipedia response = await _repository.getList();
     _subject.sink.add(response);
   }
 
@@ -20,7 +20,7 @@ class WikiBloc
     _subject.close();
   }
 
-  BehaviorSubject<Query> get subject => _subject;
+  BehaviorSubject<Wikipedia> get subject => _subject;
 }
 
 final moviesBloc = WikiBloc();

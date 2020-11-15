@@ -1,12 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:fluttervaluelab/bloc/wikipediaBloc.dart';
 import 'package:fluttervaluelab/model/wekipediaModel.dart';
 
-
 import 'GetData.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -16,14 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home:
-      Getdata()
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: Getdata()
 //      MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        );
   }
 }
 
@@ -38,8 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   WikiBloc _wikiBloc;
-Wikipedia wikipedia;
-
+  Wikipedia wikipedia;
 
   @override
   void initState() {
@@ -49,19 +43,15 @@ Wikipedia wikipedia;
 
   @override
   Widget build(BuildContext context) {
-
-
-    return StreamBuilder<Query>(
+    return StreamBuilder<Wikipedia>(
         stream: moviesBloc.subject.stream,
-        builder: (context, AsyncSnapshot<Query> snapshot) {
+        builder: (context, AsyncSnapshot<Wikipedia> snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data != null ) {
+            if (snapshot.data != null) {
               print(snapshot.data);
               return Text(snapshot.data.toString());
-
             }
             print(snapshot.data);
-
 
             return listWidget(snapshot.data);
           } else if (snapshot.hasError) {
@@ -70,30 +60,32 @@ Wikipedia wikipedia;
           } else {
             print('success');
             return Container(
-
               child: Text("Responce$snapshot.data.toString()"),
             );
           }
         });
   }
 
-  Widget listWidget(Query data) {
-var suggestionList = data.pages;
+  Widget listWidget(Wikipedia data) {
+    var suggestionList = data.query;
 //var list =suggestionList.;
-
 
     return ListView.builder(
 //        itemCount: suggestionList.length,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-            },
-            child: ListTile(
+      return GestureDetector(
+        onTap: () {},
+        child: Container(
+          child:Card(
 
-              title: Text(suggestionList[index].title),
-            ),
-
-          );
-        });
+         child: Column(
+            children: <Widget>[
+              Text(suggestionList[index].pages[index].title),
+              Image.network(suggestionList[index].pages[index].pageid.toString()),
+            ],
+          ),
+        ),
+      ));
+    });
   }
 }
