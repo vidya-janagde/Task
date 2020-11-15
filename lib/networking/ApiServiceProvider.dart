@@ -9,12 +9,12 @@ class ApiServiceProvider{
 
 
 static final  url='https://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages%7Cpageterms&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=50&pilimit=10&wbptterms=description&gpssearch=Sachin+T&gpslimit=10';
- static Future<Wikipedia> getdata() async {
+ static Future<Data> getdata() async {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var map = json.decode(response.body);
 
-      Wikipedia responcedata= Wikipedia.fromJson(map);
+      Data responcedata= Data.fromJson(map);
 
 
 
