@@ -82,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
          child:Card(
            child: Column(
              children: <Widget>[
-//               Text(suggestionList.title),
-//               Image.network(suggestionList.thumbnail.source),
-//               Text(suggestionList.terms.description)
+               Text(suggestionList.pages.title),
+               Image.network(suggestionList.pages.thumbnail.source),
+               Text(suggestionList.pages.terms.description)
              ],
            ),
          )
