@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttervaluelab/model/Datamodel.dart';
-import 'package:fluttervaluelab/model/wekipediaModel.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -12,7 +11,7 @@ static final  url='https://en.wikipedia.org//w/api.php?action=query&format=json&
  static Future<Data> getdata() async {
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      var map = json.decode(response.body);
+      Map map = json.decode(response.body);
 
       Data responcedata= Data.fromJson(map);
 

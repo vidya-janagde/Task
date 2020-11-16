@@ -28,12 +28,14 @@ class GetDataState extends State<Getdata> {
             itemBuilder: (context, index) {
               return new Row(
                 children: <Widget>[
-                  new Text(list[index].query[index] == null
+                  new Text(list[index].query.pages.title == null
                       ? 'Nodata'
-                      : list[index].query[index]),
-                  new Text(list[index].query[index] == null
+                      : list[index].query.pages.title),
+                  new Text(list[index].query.pages.ns == null
                       ? 'Nodata'
-                      : list[index].query[index]),
+                      : list[index].query.pages.ns),
+                  Image.network(list[index].query.pages.thumbnail.source),
+                  Text(list[index].query.pages.terms.description)
                 ],
               );
             },

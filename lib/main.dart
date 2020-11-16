@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttervaluelab/bloc/wikipediaBloc.dart';
-import 'package:fluttervaluelab/model/wekipediaModel.dart';
 
 import 'GetData.dart';
+import 'model/Datamodel.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   WikiBloc _wikiBloc;
-  Wikipedia wikipedia;
+  Data wikipedia;
 
   @override
   void initState() {
@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Wikipedia>(
+    return StreamBuilder<Data>(
         stream: moviesBloc.subject.stream,
-        builder: (context, AsyncSnapshot<Wikipedia> snapshot) {
+        builder: (context, AsyncSnapshot<Data> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != null) {
               print(snapshot.data);
@@ -66,24 +66,29 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  Widget listWidget(Wikipedia data) {
-    var suggestionList = data.query;
+  Widget listWidget(Data data) {
+    var suggestionList = data.query.pages;
 //var list =suggestionList.;
 
     return ListView.builder(
-//        itemCount: suggestionList.length,
+
+//        itemCount: data.,
         itemBuilder: (context, index) {
       return GestureDetector(
         onTap: () {},
         child: Container(
           child:Card(
 
-         child: Column(
-            children: <Widget>[
-              Text(suggestionList[index].pages[index].title),
-              Image.network(suggestionList[index].pages[index].pageid.toString()),
-            ],
-          ),
+         child:Card(
+           child: Column(
+             children: <Widget>[
+               Text(suggestionList.title),
+               Image.network(suggestionList.thumbnail.source),
+               Text(suggestionList.terms.description)
+             ],
+           ),
+         )
+
         ),
       ));
     });

@@ -1,29 +1,42 @@
+
+
 import 'package:fluttervaluelab/model/Pagedata.dart';
 import 'package:fluttervaluelab/model/Redirectdata.dart';
+import 'package:json_annotation/json_annotation.dart';
+part'Querydata.g.dart';
 
-class Querydata {
-  Querydata({
+@JsonSerializable(explicitToJson: true)
+class Query {
+  Query({
     this.redirects,
     this.pages,
   });
 
-  List<Redirectdata> redirects;
-  List<Pagedata> pages;
-
-  factory Querydata.fromJson(Map<String, dynamic> json) {
-    List<dynamic> list = json['redirects'];
-    List<Redirectdata> qaurydata = list.map((i) => Redirectdata.fromJson(i)).toList();
+  @JsonKey(name: 'redirects', defaultValue: '')
+  Redirect redirects;
+  @JsonKey(name: 'pages', defaultValue: '')
+  Page pages;
 
 
-    List<dynamic> listcont = json['pages'];
-    List<Pagedata> condata = listcont.map((i) => Pagedata.fromJson(i))
-        .toList();
+  factory Query.fromJson(Map<dynamic, dynamic> json) =>_$QueryFromJson(json);
 
-    return Querydata(
-      redirects:qaurydata,
-      pages: condata,
-    );
-  }
+  Map<String, dynamic> toJson() => _$QueryToJson(this);
+
+
+//  factory Querydata.fromJson(Map<String, dynamic> json) {
+//    List<dynamic> list = json['redirects'];
+//    List<Redirectdata> qaurydata = list.map((i) => Redirectdata.fromJson(i)).toList();
+//
+//
+//    List<dynamic> listcont = json['pages'];
+//    List<Pagedata> condata = listcont.map((i) => Pagedata.fromJson(i))
+//        .toList();
+//
+//    return Querydata(
+//      redirects:qaurydata,
+//      pages: condata,
+//    );
+//  }
 
 //  Map<String, dynamic> toJson() => {
 //    "redirects": List<dynamic>.from(redirects.map((x) => x.toJson())),

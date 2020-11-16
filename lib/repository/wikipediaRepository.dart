@@ -1,7 +1,8 @@
 
 
 import 'package:dio/dio.dart';
-import 'package:fluttervaluelab/model/wekipediaModel.dart';
+import 'package:fluttervaluelab/model/Datamodel.dart';
+
 import 'package:http/http.dart'as http;
 
 class WikiRepository {
@@ -12,7 +13,7 @@ class WikiRepository {
   var getUrl = 'https://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages%7Cpageterms&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=50&pilimit=10&wbptterms=description&gpssearch=Sachin+T&gpslimit=10';
 
 
-  Future<Wikipedia> getList() async {
+  Future<Data> getList() async {
 
 
     try {
@@ -21,7 +22,7 @@ class WikiRepository {
 
 
 
-      return Wikipedia.fromJson(response.data);
+      return Data.fromJson(response.data);
 
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
