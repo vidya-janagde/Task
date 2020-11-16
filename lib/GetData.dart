@@ -28,7 +28,7 @@ class GetDataState extends State<Getdata> {
             itemBuilder: (context, index) {
               return new Row(
                 children: <Widget>[
-                  new Text(list[index].query.pages.title == null
+                  new Text(list[index].query == null
                       ? 'Nodata'
                       : list[index].query.pages.title),
                   new Text(list[index].query.pages.ns == null

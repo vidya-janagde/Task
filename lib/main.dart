@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget listWidget(Data data) {
-    var suggestionList = data.query.pages;
+    var suggestionList = data.query;
 //var list =suggestionList.;
 
     return ListView.builder(
@@ -82,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
          child:Card(
            child: Column(
              children: <Widget>[
-               Text(suggestionList.title),
-               Image.network(suggestionList.thumbnail.source),
-               Text(suggestionList.terms.description)
+//               Text(suggestionList.title),
+//               Image.network(suggestionList.thumbnail.source),
+//               Text(suggestionList.terms.description)
              ],
            ),
          )

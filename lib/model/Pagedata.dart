@@ -31,32 +31,5 @@ class Page {
 
   Map<String, dynamic> toJson() => _$PageToJson(this);
 
-//
-//  factory Pagedata.fromJson(Map<String, dynamic> json) {
-//    List<dynamic> list = json['thumbnail'];
-//    List<Thumbnaildata> thumbnail = list.map((i) => Thumbnaildata.fromJson(i))
-//        .toList();
-//
-//    List<dynamic> listterms = json['terms'];
-//    List<Termsdata> termsdata = listterms.map((i) => Termsdata.fromJson(i))
-//        .toList();
-//
-//    return Pagedata(
-//      pageid: json["pageid"],
-//      ns: json["ns"],
-//      title: json["title"],
-//      index: json["index"],
-//      thumbnail: thumbnail,
-//      terms:termsdata  ,
-//    );
-//  }
 
-//  Map<String, dynamic> toJson() => {
-//    "pageid": pageid,
-//    "ns": ns,
-//    "title": title,
-//    "index": index,
-//    "thumbnail": thumbnail == null ? null : thumbnail.toJson(),
-//    "terms": terms == null ? null : terms.toJson(),
-//  };
 }

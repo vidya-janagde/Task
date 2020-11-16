@@ -23,15 +23,5 @@ class Redirect {
 
   Map<String, dynamic> toJson() => _$RedirectToJson(this);
 
-//  factory Redirectdata.fromJson(Map<String, dynamic> json) => Redirectdata(
-//    index: json["index"],
-//    from: json["from"],
-//    to: json["to"],
-//  );
-//
-//  Map<String, dynamic> toJson() => {
-//    "index": index,
-//    "from": from,
-//    "to": to,
-//  };
+
 }
