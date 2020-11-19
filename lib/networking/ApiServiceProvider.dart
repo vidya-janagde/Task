@@ -2,55 +2,52 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:fluttervaluelab/model/Datamodel.dart';
+import 'package:fluttervaluelab/model/Querydata.dart';
+import 'package:fluttervaluelab/model/Thumbnaildata.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
+class ApiServiceProvider {
 
-class ApiServiceProvider{
+ static SharedPreferences pref ;
+ static var map;
+  static List<Data> list = [];
+  static final url =
+      'https://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages%7Cpageterms&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=50&pilimit=10&wbptterms=description&gpssearch=Sachin+T&gpslimit=10';
 
-
-static final  url='https://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages%7Cpageterms&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=50&pilimit=10&wbptterms=description&gpssearch=Sachin+T&gpslimit=10';
- static Future<HashMap<String, List<Data>>> getdata() async {
+ static Future<List<Data>> getdata() async {
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      var map = json.decode(response.body);
+      map = json.decode(response.body);
 
-      Data responcedata= Data.fromJson(map);
+      var responcedata = Data.fromJson(map);
 
-      LinkedHashMap<dynamic, dynamic> theParsedOne = new LinkedHashMap.of(map);
-   HashMap<dynamic, List<Data>> newMap = HashMap.from(theParsedOne.map((key, value) {
-   List<Page> values = List.from(value);
-   return MapEntry(
-   key.toString(),
-   values.map((theValue) {
-   return theValue.toString();
-   }).toList());
-   }));
-
-      
-
-      return  newMap;
-//
-      var data = map["query"];
-      var page1 = data ["pages"];
-//      List <Page> weightData =new List();
-//      setState(() {
-//
-//        map.entries.map( (entry) { weightData.add(Page.fromJson(entry));
-//        print(entry);
-//        }).toList();
-//      });
+      list.add(Data.fromJson(map));
 
 
-//       streetsList = new List.from(page1);
+      saveJson(map);
 
-//      for (int i = 0; i < page1.length; i++) {
-//        weightData.add(new Pagedata.fromJson(map[i]));
-//      }
-
+      return list;
     }
   }
 
 
-}
+static saveJson(Map map)
+  async {
+    pref== await SharedPreferences.getInstance();
+    String wiki_pedia = jsonEncode(Data.fromJson(map));
+    pref.setString('wiki', wiki_pedia);
 
+
+  }
+
+  static Future<List<Data>> getJason()
+  async {
+    pref = await SharedPreferences.getInstance();
+    var json = jsonDecode(pref.getString('wiki'));
+    list.add(Data.fromJson(json));
+    return list;
+  }
+
+}

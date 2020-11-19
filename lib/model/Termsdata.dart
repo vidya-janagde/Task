@@ -8,8 +8,8 @@ class Terms {
   Terms({
     this.description,
   });
-  @JsonKey(name: 'description', defaultValue: '')
-  String description;
+  @JsonKey(name: 'description', defaultValue: '',disallowNullValue: true)
+  List<String> description;
 
   factory Terms.fromJson(Map<String, dynamic> json) =>_$TermsFromJson(json);
 

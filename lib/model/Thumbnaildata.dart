@@ -10,11 +10,11 @@ class Thumbnail {
     this.width,
     this.height,
   });
-  @JsonKey(name: 'source', defaultValue: '')
+  @JsonKey(name: 'source', defaultValue: '',disallowNullValue: false)
   String source;
-  @JsonKey(name: 'width', defaultValue: '')
+  @JsonKey(name: 'width', defaultValue: '',disallowNullValue: true)
   int width;
-  @JsonKey(name: 'height', defaultValue: '')
+  @JsonKey(name: 'height', defaultValue: '',disallowNullValue: true)
   int height;
 
   factory Thumbnail.fromJson(Map<String, dynamic> json) =>_$ThumbnailFromJson(json);

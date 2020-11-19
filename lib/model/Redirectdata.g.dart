@@ -8,13 +8,14 @@ part of 'Redirectdata.dart';
 
 Redirect _$RedirectFromJson(Map<String, dynamic> json) {
   return Redirect(
-      index: json['index'] as int ?? '',
-      from: json['from'] as String ?? '',
-      to: json['to'] as String ?? '');
+    index: json['index'] as int ?? '',
+    from: json['from'] as String ?? '',
+    to: json['to'] as String ?? '',
+  );
 }
 
 Map<String, dynamic> _$RedirectToJson(Redirect instance) => <String, dynamic>{
       'index': instance.index,
       'from': instance.from,
-      'to': instance.to
+      'to': instance.to,
     };

@@ -8,15 +8,20 @@ part of 'Querydata.dart';
 
 Query _$QueryFromJson(Map<String, dynamic> json) {
   return Query(
-      redirects: json['redirects'] == null
-          ? null
-          : Redirect.fromJson(json['redirects'] as Map<String, dynamic>) ?? '',
-      pages: json['pages'] == null
-          ? null
-          : Page.fromJson(json['pages'] as Map<String, dynamic>) ?? '');
+    redirects: (json['redirects'] as List)
+            ?.map((e) =>
+                e == null ? null : Redirect.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        '',
+    pages: (json['pages'] as List)
+            ?.map((e) =>
+                e == null ? null : Page.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        '',
+  );
 }
 
 Map<String, dynamic> _$QueryToJson(Query instance) => <String, dynamic>{
-      'redirects': instance.redirects?.toJson(),
-      'pages': instance.pages?.toJson()
+      'redirects': instance.redirects?.map((e) => e?.toJson())?.toList(),
+      'pages': instance.pages?.map((e) => e?.toJson())?.toList(),
     };

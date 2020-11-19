@@ -6,19 +6,21 @@ part of 'Datamodel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Data _$DataFromJson(Map<String, dynamic> json) {
+Data _$DataFromJson(Map json) {
   return Data(
-      batchcomplete: json['batchcomplete'] as bool ?? '',
-      continuee: json['continue'] == null
-          ? null
-          : Continue.fromJson(json['continue'] as Map<String, dynamic>) ?? '',
-      query: json['query'] == null
-          ? null
-          : Query.fromJson(json['query'] as Map<String, dynamic>) ?? '');
+    continuee: json['continue'] == null
+        ? null
+        : Continue.fromJson((json['continue'] as Map)?.map(
+              (k, e) => MapEntry(k as String, e),
+            )) ??
+            '',
+    query: json['query'] == null
+        ? null
+        : Query.fromJson(json['query'] as Map) ?? '',
+  );
 }
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'batchcomplete': instance.batchcomplete,
       'continue': instance.continuee?.toJson(),
-      'query': instance.query?.toJson()
+      'query': instance.query?.toJson(),
     };

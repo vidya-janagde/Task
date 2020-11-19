@@ -3,7 +3,7 @@ import 'package:fluttervaluelab/model/Thumbnaildata.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'Pagedata.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true,anyMap: true)
 class Page {
   Page({
     this.pageid,
@@ -14,17 +14,17 @@ class Page {
     this.terms,
   });
 
-  @JsonKey(name: 'pageid', defaultValue: '')
+  @JsonKey(name: 'pageid', defaultValue: '',disallowNullValue: true)
   int pageid;
-  @JsonKey(name: 'ns', defaultValue: '')
+  @JsonKey(name: 'ns', defaultValue: '',disallowNullValue: true)
   int ns;
-  @JsonKey(name: 'title', defaultValue: '')
+  @JsonKey(name: 'title', defaultValue: '',disallowNullValue: true)
   String title;
-  @JsonKey(name: 'index', defaultValue: '')
+  @JsonKey(name: 'index', defaultValue: '',disallowNullValue: true)
   int index;
-  @JsonKey(name: 'thumbnail', defaultValue: '')
+  @JsonKey(name: 'thumbnail', defaultValue: '',disallowNullValue: true)
   Thumbnail thumbnail;
-  @JsonKey(name: 'terms', defaultValue: '')
+  @JsonKey(name: 'terms', defaultValue: '',disallowNullValue: true)
   Terms terms;
 
   factory Page.fromJson(Map<String, dynamic> json) =>_$PageFromJson(json);

@@ -11,11 +11,11 @@ class Redirect {
     this.from,
     this.to,
   });
-  @JsonKey(name: 'index', defaultValue: '')
+  @JsonKey(name: 'index', defaultValue: '',disallowNullValue: true)
   int index;
-  @JsonKey(name: 'from', defaultValue: '')
+  @JsonKey(name: 'from', defaultValue: '',disallowNullValue: true)
   String from;
-  @JsonKey(name: 'to', defaultValue: '')
+  @JsonKey(name: 'to', defaultValue: '',disallowNullValue: true)
   String to;
 
 

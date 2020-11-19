@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttervaluelab/bloc/wikipediaBloc.dart';
 
-import 'GetData.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'model/Datamodel.dart';
 
 void main() {
@@ -12,13 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: Getdata()
-//      MyHomePage(title: 'Flutter Demo Home Page'),
-        );
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: ''),
+    );
   }
 }
 
@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    WikiBloc.check();
     moviesBloc..getData();
   }
 
@@ -49,16 +50,14 @@ class _MyHomePageState extends State<MyHomePage> {
           if (snapshot.hasData) {
             if (snapshot.data != null) {
               print(snapshot.data);
-              return Text(snapshot.data.toString());
+              return listWidget(context, snapshot);
             }
             print(snapshot.data);
 
-            return listWidget(snapshot.data);
+            return listWidget(context, snapshot);
           } else if (snapshot.hasError) {
             print(snapshot.error);
-//            return _buildErrorWidget(snapshot.error);
           } else {
-            print('success');
             return Container(
               child: Text("Responce$snapshot.data.toString()"),
             );
@@ -66,31 +65,43 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  Widget listWidget(Data data) {
-    var suggestionList = data.query;
-//var list =suggestionList.;
-
+  Widget listWidget(BuildContext context, AsyncSnapshot<Data> snapshot) {
     return ListView.builder(
-
-//        itemCount: data.,
+        itemCount: snapshot.data.query.pages.length,
         itemBuilder: (context, index) {
-      return GestureDetector(
-        onTap: () {},
-        child: Container(
-          child:Card(
+          return GestureDetector(
+              onTap: () => launchURL(snapshot.data.query.pages[index].title),
+              child: Container(
+                child: Card(
+                    child: Card(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Visibility(
+                        visible:
+                            snapshot.data.query.pages[index].thumbnail.source !=
+                                    null ||
+                                WikiBloc.network_state != false,
+                        child: Image.network(
+                          snapshot.data.query.pages[index].thumbnail.source,
+                        ),
+                      ),
+                      Text(snapshot.data.query.pages[index].title),
 
-         child:Card(
-           child: Column(
-             children: <Widget>[
-               Text(suggestionList.pages.title),
-               Image.network(suggestionList.pages.thumbnail.source),
-               Text(suggestionList.pages.terms.description)
-             ],
-           ),
-         )
+                      // Text(snapshot.data.query .pages[index].terms.description[index])
+                    ],
+                  ),
+                )),
+              ));
+        });
+  }
 
-        ),
-      ));
-    });
+  launchURL(String name) async {
+    const url = 'https://en.wikipedia.org/wiki/';
+    if (await canLaunch(url)) {
+      await launch("https://en.wikipedia.org/wiki/$name");
+    } else {
+      throw "Could not launch";
+    }
   }
 }
