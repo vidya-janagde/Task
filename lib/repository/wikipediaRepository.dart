@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:fluttervaluelab/Utils/Strings.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:fluttervaluelab/model/Datamodel.dart';
@@ -14,12 +15,10 @@ class WikiRepository {
   static SharedPreferences pref;
 
 
-  var getUrl =
-      'https://en.wikipedia.org//w/api.php?action=query&format=json&prop=pageimages%7Cpageterms&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=50&pilimit=10&wbptterms=description&gpssearch=Sachin+T&gpslimit=10';
 
   Future<Data> getList() async {
     try {
-      http.Response response = await http.get(getUrl);
+      http.Response response = await http.get(BASE_URL);
 
       var map = json.decode(response.body);
       saveJson(map);
