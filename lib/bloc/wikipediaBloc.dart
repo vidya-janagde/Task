@@ -16,6 +16,8 @@ class WikiBloc
   final BehaviorSubject<Data> _subject =
   BehaviorSubject<Data>();
 
+
+
   getData() async {
 
     check();

@@ -32,7 +32,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  WikiBloc _wikiBloc;
   Data wikipedia;
 
   @override
@@ -56,11 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
             return listWidget(context, snapshot);
           } else if (snapshot.hasError) {
-            print(snapshot.error);
+            return Text(snapshot.error.toString());
           } else {
-            return Container(
-              child: Text("Responce$snapshot.data.toString()"),
-            );
+            return Center(child: CircularProgressIndicator());
           }
         });
   }
@@ -82,10 +79,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             snapshot.data.query.pages[index].thumbnail.source !=
                                     null ||
                                 WikiBloc.network_state != false,
-                        child: Image.network(
-                          snapshot.data.query.pages[index].thumbnail.source,
-                        ),
+                        child: Image.network(snapshot
+                                    .data.query.pages[index].thumbnail.source ==
+                                ""
+                            ? Image.network(
+                                "https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png")
+                            : snapshot
+                                .data.query.pages[index].thumbnail.source),
                       ),
+
                       Text(snapshot.data.query.pages[index].title),
 
                       // Text(snapshot.data.query .pages[index].terms.description[index])

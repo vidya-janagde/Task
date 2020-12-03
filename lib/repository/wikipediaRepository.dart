@@ -20,12 +20,17 @@ class WikiRepository {
     try {
       http.Response response = await http.get(BASE_URL);
 
-      var map = json.decode(response.body);
-      saveJson(map);
 
-      Data responcedata = Data.fromJson(map);
+      if(response.statusCode == 200)
+        {
+          var map = json.decode(response.body);
+          saveJson(map);
 
-      return responcedata;
+          Data responcedata = Data.fromJson(map);
+
+          return responcedata;
+        }
+
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
     }
